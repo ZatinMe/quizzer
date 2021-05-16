@@ -5,7 +5,7 @@
     <div class="img-div" v-if="showImg">
       <img
         :src="questionImgLink"
-        class="img-fluid q-img"
+        class="img-fluid q-img" 
         alt="Image for the question"
       />
     </div>
@@ -42,7 +42,7 @@
       <div
         class="progress-bar progress-bar-striped progress-bar-animated bg-dark"
         role="progressbar"
-        :style="{ width: (questionTimer / 30) * 100 + '%' }"
+        :style="{ width: (questionTimer / 10) * 100 + '%' }"
         aria-valuemin="0"
         aria-valuemax="100"
       >

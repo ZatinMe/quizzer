@@ -334,7 +334,7 @@ async function publishTimer(event, countDownSec) {
 
 This is an asynchronous function, meaning, it will finish executing the `setTimeout()` function before moving onto the execution of the next statement. We use this method to publish the timer from the server, to ensure that the front-end clients are always in-sync.
 
-There could be different kinds of timers, like the 5 sec timer before the quiz initially starts, or the 30 sec timer for every question. The two arguments for this function help determine that and act accordingly. If all the available players have answered a question, there’s no point waiting for the remaining time to elapse. In such a case, we set the `skipTimer` flag to true and skip the rest of the timer.
+There could be different kinds of timers, like the 5 sec timer before the quiz initially starts, or the 10 sec timer for every question. The two arguments for this function help determine that and act accordingly. If all the available players have answered a question, there’s no point waiting for the remaining time to elapse. In such a case, we set the `skipTimer` flag to true and skip the rest of the timer.
 
 ##### The `publishQuestion()` method:
 
@@ -632,7 +632,7 @@ subscribeToRoomChEvents() {
   this.myQuizRoomCh.subscribe('question-timer', msg => {
     this.questionTimer = msg.data.countDownSec;
     if (this.questionTimer < 0) {
-      this.questionTimer = 30;
+      this.questionTimer = 10;
     }
   });
   this.myQuizRoomCh.subscribe('correct-answer', msg => {
@@ -761,7 +761,7 @@ beforeDestroy() {
   if (this.myQuizRoomCh) {
     this.myQuizRoomCh.presence.leave();
   }
-  this.questionTimer = 30;
+  this.questionTimer = 10;
 }
 ```
 

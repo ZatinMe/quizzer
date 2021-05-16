@@ -2,7 +2,7 @@ const randomQuestions = require('./quiz-default-questions');
 const { parentPort, workerData } = require('worker_threads');
 const Ably = require('ably/promises');
 const START_TIMER_SEC = 5;
-const QUESTION_TIMER_SEC = 30;
+const QUESTION_TIMER_SEC = 10;
 
 const ABLY_API_KEY = process.env.ABLY_API_KEY;
 const globalPlayersState = {};

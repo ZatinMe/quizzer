@@ -192,7 +192,7 @@ export default {
       newQuestion: null,
       newChoices: [],
       isLastQuestion: null,
-      questionTimer: 30,
+      questionTimer: 10,
       correctAnswerIndex: null,
       showAnswer: false,
       numAnswered: 0,
@@ -303,7 +303,7 @@ export default {
       this.myQuizRoomCh.subscribe('question-timer', msg => {
         this.questionTimer = msg.data.countDownSec;
         if (this.questionTimer < 0) {
-          this.questionTimer = 30;
+          this.questionTimer = 10;
         }
       });
       this.myQuizRoomCh.subscribe('correct-answer', msg => {
@@ -373,7 +373,7 @@ export default {
     if (this.myQuizRoomCh) {
       this.myQuizRoomCh.presence.leave();
     }
-    this.questionTimer = 30;
+    this.questionTimer = 10;
   }
 };
 </script>
