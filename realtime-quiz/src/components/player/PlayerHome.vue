@@ -73,6 +73,14 @@
       :didAnswerCorrectly="didAnswerCorrectly"
       :isAdminView="false"
     ></Answer>
+    <iframe 
+      v-if="showAnswer || showFinalScreen"
+      width="560" height="315" 
+      src="https://www.youtube.com/embed/yxdOhAyVrak?controls=0" 
+      title="YouTube video player" 
+      frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+      allowfullscreen>
+    </iframe>
     <Leaderboard
       v-if="showAnswer && !showFinalScreen"
       :leaderboard="leaderboard"
@@ -84,7 +92,7 @@
         :numAnswered="numAnswered"
         :numPlaying="numPlaying"
       ></LiveStats>
-    </div>
+       </div>
     <template v-if="didHostForceQuizEnd">
       <div class="alert alert-danger alert-quiz-ended" role="alert">
         This quiz has ended <br />Either the host has ended it or they have

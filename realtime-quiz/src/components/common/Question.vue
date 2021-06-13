@@ -1,52 +1,67 @@
 <template>
   <div class="card" :class="viewType">
-    <div class="card-header">Question {{ newQuestionNumber }}</div>
-    <h2 class="question-div card-title">{{ newQuestion }}</h2>
-    <div class="img-div" v-if="showImg">
-      <img
-        :src="questionImgLink"
-        class="img-fluid q-img" 
-        alt="Image for the question"
-      />
-    </div>
-    <Answer
-      v-if="showAnswer"
-      :correctAnswer="newChoices[correctAnswerIndex]"
-      :isAdminView="true"
-    ></Answer>
-    <div class="card-body" v-if="!showAnswer">
-      <h5 class="card-title"></h5>
-      <div class="choices-container" v-if="!answerSubmitted && !isAdminView">
-        <button
-          type="button"
-          class="btn btn-outline-dark choice-btn"
-          v-for="(choice, index) in newChoices"
-          :key="choice"
-          @click="sendMyAnswer(choice, index)"
-        >
-          {{ choice }}
-        </button>
+    <videoComp></videoComp>
+    <iframe 
+    v-if="!isAdminView"
+    id = "myVideo"
+    src="https://www.youtube.com/embed/yxdOhAyVrak?controls=0"  
+      style="border:none;overflow:hidden" 
+      scrolling="no" 
+      autoplay="true"
+      mute = "false"
+      frameborder="0" 
+      allowfullscreen="true" 
+      allow="web-share, accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" >
+    </iframe>
+    <div  class="content">
+      <div class="card-header content">Question {{ newQuestionNumber }}</div>
+      <h2 class="question-div card-title">{{ newQuestion }}</h2>
+      <div class="img-div" v-if="showImg">
+        <img
+          :src="questionImgLink"
+          class="img-fluid q-img" 
+          alt="Image for the question"
+        />
       </div>
-      <div class="choices-container" v-if="isAdminView">
-        <div class="choice-div" v-for="choice in newChoices" :key="choice">
-          {{ choice }}
+      <Answer
+        v-if="showAnswer"
+        :correctAnswer="newChoices[correctAnswerIndex]"
+        :isAdminView="true"
+      ></Answer>
+      <div class="card-body" v-if="!showAnswer">
+        <h5 class="card-title"></h5>
+        <div class="choices-container" v-if="!answerSubmitted && !isAdminView">
+          <button
+            type="button"
+            class="btn btn-outline-dark choice-btn"
+            v-for="(choice, index) in newChoices"
+            :key="choice"
+            @click="sendMyAnswer(choice, index)"
+          >
+            {{ choice }}
+          </button>
+        </div>
+        <div class="choices-container" v-if="isAdminView">
+          <div class="choice-div" v-for="choice in newChoices" :key="choice">
+            {{ choice }}
+          </div>
+        </div>
+        <div class="submitted-msg" v-if="answerSubmitted">
+          <h5>
+            Your answer is submitted, waiting for everyone else to answer...
+          </h5>
         </div>
       </div>
-      <div class="submitted-msg" v-if="answerSubmitted">
-        <h5>
-          Your answer is submitted, waiting for everyone else to answer...
-        </h5>
-      </div>
-    </div>
-    <div v-if="!(isAdminView && showAnswer)" class="progress">
-      <div
-        class="progress-bar progress-bar-striped progress-bar-animated bg-dark"
-        role="progressbar"
-        :style="{ width: (questionTimer / 10) * 100 + '%' }"
-        aria-valuemin="0"
-        aria-valuemax="100"
-      >
-        {{ questionTimer }}
+      <div v-if="!(isAdminView && showAnswer)" class="progress">
+        <div
+          class="progress-bar progress-bar-striped progress-bar-animated bg-dark"
+          role="progressbar"
+          :style="{ width: (questionTimer / 10) * 100 + '%' }"
+          aria-valuemin="0"
+          aria-valuemax="100"
+        >
+          {{ questionTimer }}
+        </div>
       </div>
     </div>
   </div>
@@ -198,5 +213,22 @@ export default {
     margin: 0px auto;
     color: gray;
   }
+  #myVideo {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+}
+
+.content {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  color: #f1f1f1;
+  width: 100%;
+  padding: 20px;
+}
 }
 </style>
