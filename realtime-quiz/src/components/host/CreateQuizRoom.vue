@@ -124,7 +124,7 @@
           :numPlaying="numPlaying"
           v-if="!showAnswer"
         ></LiveStats>
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/yxdOhAyVrak?controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <live-video :isAdminView="true"></live-video>
         <div v-if="showAnswer">
           <Leaderboard
             :leaderboard="leaderboard"
@@ -143,7 +143,7 @@
       <div class="text-white end-msg">
         <h6>The quiz has ended</h6>
         <h1 class="display-4">Congratulations to the winners 🎉🎉🎉</h1>
-          <iframe width="560" height="315" src="https://www.youtube.com/embed/yxdOhAyVrak?controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <live-video :isAdminView="true"></live-video>
       </div>
       <Leaderboard
         :leaderboard="leaderboard"
@@ -160,6 +160,7 @@ import OnlinePlayers from '../common/OnlinePlayers.vue';
 import AdminPanel from './AdminPanel.vue';
 import LiveStats from '../common/LiveStats.vue';
 import Leaderboard from '../common/Leaderboard.vue';
+import LiveVideo from '../common/LiveVideo.vue';
 import * as GSheetReader from 'g-sheets-api';
 export default {
   name: 'QuizType',
@@ -169,7 +170,8 @@ export default {
     AdminPanel,
     LiveStats,
     Leaderboard,
-    OnlinePlayers
+    OnlinePlayers,
+    LiveVideo
   },
   data() {
     return {

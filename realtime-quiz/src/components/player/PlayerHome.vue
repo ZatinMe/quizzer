@@ -73,14 +73,7 @@
       :didAnswerCorrectly="didAnswerCorrectly"
       :isAdminView="false"
     ></Answer>
-    <iframe 
-      v-if="showAnswer || showFinalScreen"
-      width="560" height="315" 
-      src="https://www.youtube.com/embed/yxdOhAyVrak?controls=0" 
-      title="YouTube video player" 
-      frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-      allowfullscreen>
-    </iframe>
+    <live-video v-if="showAnswer || showFinalScreen" :isAdminView="false"></live-video>
     <Leaderboard
       v-if="showAnswer && !showFinalScreen"
       :leaderboard="leaderboard"
@@ -120,6 +113,7 @@ import Answer from '../common/Answer.vue';
 import OnlinePlayers from '../common/OnlinePlayers.vue';
 import LiveStats from '../common/LiveStats.vue';
 import Leaderboard from '../common/Leaderboard.vue';
+import LiveVideo from '../common/LiveVideo.vue';
 
 import axios from 'axios';
 export default {
@@ -130,7 +124,8 @@ export default {
     Answer,
     OnlinePlayers,
     LiveStats,
-    Leaderboard
+    Leaderboard,
+    LiveVideo
   },
   data() {
     return {
