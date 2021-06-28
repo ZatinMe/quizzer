@@ -1,18 +1,6 @@
 <template>
   <div class="card" :class="viewType">
-    <videoComp></videoComp>
-    <iframe 
-    v-if="!isAdminView"
-    id = "myVideo"
-    src="https://www.youtube.com/embed/yxdOhAyVrak?controls=0"  
-      style="border:none;overflow:hidden" 
-      scrolling="no" 
-      autoplay="true"
-      mute = "false"
-      frameborder="0" 
-      allowfullscreen="true" 
-      allow="web-share, accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" >
-    </iframe>
+    <live-video id = "myVideo" :isAdminView="false"></live-video>
     <div  class="content">
       <div class="card-header content">Question {{ newQuestionNumber }}</div>
       <h2 class="question-div card-title">{{ newQuestion }}</h2>
@@ -69,11 +57,13 @@
 
 <script>
 import Answer from '../common/Answer.vue';
+import LiveVideo from '../common/LiveVideo.vue';
 
 export default {
   name: 'Question',
   components: {
-    Answer
+    Answer,
+    LiveVideo
   },
   props: [
     'isAdminView',
